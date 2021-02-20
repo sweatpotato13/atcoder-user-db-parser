@@ -1,8 +1,9 @@
 import { config } from "./config";
 import { client } from "./postgres";
-var scraper = require("table-scraper");
+import cron from "node-cron";
+import scraper from "table-scraper";
 
-async function main() {
+cron.schedule("0 0 * * *", async function () {
     let pageid = 1;
     while (pageid) {
         const data = await scraper.get(
@@ -35,5 +36,4 @@ async function main() {
         });
         pageid += 1;
     }
-}
-main();
+});

@@ -44,6 +44,7 @@
   "dependencies": {
     "@types/pg": "^7.14.10",
     "dotenv": "^8.2.0",
+    "node-cron": "^2.0.3",
     "pg": "^8.5.1",
     "table-scraper": "^1.0.3",
     "tslib": "^2.1.0"
