@@ -3,7 +3,7 @@ import { client } from "./postgres";
 import cron from "node-cron";
 import scraper from "table-scraper";
 
-cron.schedule("0 0 * * *", async function () {
+async function getUserInfo() {
     let pageid = 1;
     while (pageid) {
         const data = await scraper.get(
@@ -36,4 +36,13 @@ cron.schedule("0 0 * * *", async function () {
         });
         pageid += 1;
     }
-});
+}
+
+function main() {
+    getUserInfo();
+    cron.schedule("0 0 * * *", async function () {
+        getUserInfo();
+    });
+}
+
+main();
