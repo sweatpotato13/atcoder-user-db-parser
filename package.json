@@ -33,6 +33,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev src/main.ts --trace-sync-io",
+    "start:prod": "node dist/src/main",
     "test": "jest",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "prettier": "prettier --write --config .prettierrc ./src///*.ts && prettier --write --config .prettierrc ./test///*.ts",

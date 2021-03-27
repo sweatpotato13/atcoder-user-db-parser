@@ -37,3 +37,8 @@ services:
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_DEV_MODE: "true"
       HASURA_GRAPHQL_ADMIN_SECRET: "${HASURA_ADMIN_SECRET}"
+  parser:
+    container_name: parser
+    build:
+        dockerfile: Dockerfile
+        context: ./
