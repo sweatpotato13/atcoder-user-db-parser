@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
 import { config } from "./config";
 const { Client } = require("pg");
 
