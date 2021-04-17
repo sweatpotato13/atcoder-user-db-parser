@@ -43,7 +43,7 @@
   "author": "CuteWisp <sweatpotato13@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/pg": "^7.14.10",
+    "@types/pg": "^7.14.11",
     "dotenv": "^8.2.0",
     "node-cron": "^2.0.3",
     "pg": "^8.5.1",
