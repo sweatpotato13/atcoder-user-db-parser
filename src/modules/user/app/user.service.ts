@@ -15,7 +15,7 @@ export class UserService implements IUserService {
     constructor(private readonly _commandBus: CommandBus) { }
 
     @Transactional()
-    @Cron(`0 32 * * * *`)
+    @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
     public async parseRanking(data: any): Promise<any> {
         try {
             const ret = await this._commandBus.execute(
