@@ -3,6 +3,7 @@
 /node_modules
 
 # Logs
+log
 logs
 *.log
 npm-debug.log*
@@ -33,6 +34,7 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-#
+postgres
+.key
+postgres-data
 .env
-postgres/pgdata

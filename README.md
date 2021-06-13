@@ -1,13 +1,15 @@
 # AtCoderUserInfoDB
 
-Get Atcoder UserInfo Database 
+Parse Atcoder UserInfo Database 
 
 ## Environment
-* PostgreSQL
-* pgAdmin
-* Hasura
-* Node.js
 * Docker
+
+## Usage
+```
+yarn build
+docker-compose up -d
+```
 
 ## Table
 | Name 	| Type 	| Description 	|

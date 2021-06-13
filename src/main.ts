@@ -1,48 +1,93 @@
-import { config } from "./config";
-import { client } from "./postgres";
-import cron from "node-cron";
-import scraper from "table-scraper";
+import { NestFactory } from "@nestjs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
+import { ValidationPipe } from "@nestjs/common";
+import { logger, errorStream } from "@common/winston";
+import { AppModule } from "./app.module";
+import { json } from "body-parser";
+import helmet from "helmet";
+import morgan from "morgan";
+import rateLimit from "express-rate-limit";
+import rTracer from "cls-rtracer";
+import {
+    initializeTransactionalContext,
+    patchTypeORMRepositoryWithBaseRepository
+} from "typeorm-transactional-cls-hooked";
+import { config } from "@config";
+import { BadRequestExceptionFilter } from "./common/filters/bad-request-exception.filter";
 
-async function getUserInfo() {
-    let pageid = 1;
-    while (pageid) {
-        const data = await scraper.get(
-            `https://beta.atcoder.jp/ranking?page=${pageid}`
+initializeTransactionalContext();
+patchTypeORMRepositoryWithBaseRepository();
+
+async function bootstrap() {
+    try {
+        const app = await NestFactory.create<NestExpressApplication>(
+            AppModule,
+            {
+                // httpsOptions: {
+                //     key: fs.readFileSync(`./ssl/product/server.key`),
+                //     cert: fs.readFileSync(`./ssl/product/server.crt`)
+                // },
+                // logger: WinstonModule.createLogger(loggerOptions)
+            }
         );
-        const table = data[1];
-        if (table == undefined) {
-            break;
-        }
-        console.log(pageid);
-        table.forEach(async element => {
-            let user: string = element.User;
-            if (user.indexOf("\n") != -1) {
-                user = user.substring(0, user.indexOf("\n"));
-                element.User = user;
+        app.useGlobalPipes(new ValidationPipe());
+        app.useGlobalFilters(new BadRequestExceptionFilter());
+        app.use(helmet());
+
+        app.use(rTracer.expressMiddleware());
+
+        app.use(json({ limit: "50mb" }));
+
+        // rateLimit
+        app.use(
+            rateLimit({
+                windowMs: 1000 * 60 * 60, // an hour
+                max: config.rateLimitMax, // limit each IP to 100 requests per windowMs
+                message:
+                    "⚠️  Too many request created from this IP, please try again after an hour"
+            })
+        );
+
+        app.use(
+            morgan("tiny", {
+                skip(req, res) {
+                    return res.statusCode < 400;
+                },
+                stream: errorStream
+            })
+        );
+
+        app.use("*", (req, res, next) => {
+            const query = req.query.query || req.body.query || "";
+            if (query.length > 2000) {
+                throw new Error("Query too large");
             }
-            element.Rank = parseInt(element.Rank);
-            if (element.Birth == "") element.Birth = 0;
-            else {
-                element.Birth = parseInt(element.Birth);
-            }
-            element.Rating = parseInt(element.Rating);
-            element.Highest = parseInt(element.Highest);
-            element.Match = parseInt(element.Match);
-            element.Win = parseInt(element.Win);
-            const deleteQuery = `DELETE FROM ${config.postgres_table} WHERE userinfo.user = '${element.User}';`;
-            const insertQuery = `INSERT INTO ${config.postgres_table} VALUES (${element.Rank},'${element.User}',${element.Birth},${element.Rating},${element.Highest},${element.Match},${element.Win});`;
-            await client.query(deleteQuery);
-            await client.query(insertQuery);
+            next();
         });
-        pageid += 1;
+
+        await app.listen(config.port, () => {
+            !config.isProduction
+                ? logger.info(
+                      `🚀  Server ready at http://${config.host}:${config.port}`,
+                      { context: "BootStrap" }
+                  )
+                : logger.info(
+                      `🚀  Server is listening on port ${config.port}`,
+                      { context: "BootStrap" }
+                  );
+
+            !config.isProduction &&
+                logger.info(
+                    `🚀  Subscriptions ready at ws://${config.host}:${config.port}`,
+                    { context: "BootStrap" }
+                );
+        });
+    } catch (error) {
+        logger.error(`❌  Error starting server, ${error}`, {
+            context: "BootStrap"
+        });
+        process.exit();
     }
 }
 
-function main() {
-    getUserInfo();
-    cron.schedule("0 0 * * *", async function () {
-        getUserInfo();
-    });
-}
-
-main();
+bootstrap();

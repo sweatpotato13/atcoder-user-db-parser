@@ -1,20 +1,26 @@
 {
-  "compilerOptions": {
-      "module": "commonjs",
-      "declaration": true,
-      "removeComments": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true,
-      "noImplicitAny": false,
-      "strictNullChecks": false,
-      "esModuleInterop": true,
-      "target": "es2017",
-      "sourceMap": true,
-      "outDir": "./dist",
-      "baseUrl": "./",
-      "incremental": true,
-      "resolveJsonModule": true
-     }
+    "compilerOptions": {
+        "module": "commonjs",
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "esModuleInterop": true,
+        "target": "es2017",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "paths": {
+            "@src/*": ["./src/*"],
+            "@common/*": ["./src/common/*"],
+            "@shared/*": ["./src/shared/*"],
+            "@config": ["./src/config"],
+            "@modules/*": ["./src/modules/*"]
+        }
+    }
 }
