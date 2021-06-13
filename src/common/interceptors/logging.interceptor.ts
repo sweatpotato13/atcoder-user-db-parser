@@ -11,14 +11,14 @@ import { logger } from "@common/winston";
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-        logger.info("[lit-hub] Before...");
+        logger.info("[db] Before...");
 
         const now = Date.now();
         return next
             .handle()
             .pipe(
                 tap(() =>
-                    logger.info(`[lit-hub] After... ${Date.now() - now}ms`)
+                    logger.info(`[db] After... ${Date.now() - now}ms`)
                 )
             );
     }
