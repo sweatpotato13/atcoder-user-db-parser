@@ -7,7 +7,7 @@ import {
     Transactional
 } from "typeorm-transactional-cls-hooked";
 import { Cron, CronExpression } from "@nestjs/schedule";
-import { IUserService } from "../domain/interfaces/hub.interface";
+import { IUserService } from "../domain/interfaces/user.interface";
 import { ParseRankingCommand } from "../domain/commands/impl/parse-ranking.command";
 
 @Injectable()
