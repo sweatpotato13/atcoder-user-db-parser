@@ -5,9 +5,19 @@
     "author": "Cute_Wisp",
     "private": true,
     "license": "UNLICENSED",
+    "lint-staged": {
+        "*.{ts,tsx,js,jsx}": [
+            "yarn run eslint --fix"
+        ],
+        "*.{md,json}": [
+            "prettier --write"
+        ]
+    },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn prettier && yarn lint && git add ."
+            "pre-commit": "lint-staged",
+            "prepare-commit-msg": "devmoji -e",
+            "commit-msg": "if git-branch-is dev; then commitlint -E HUSKY_GIT_PARAMS; fi"
         }
     },
     "scripts": {
@@ -25,7 +35,12 @@
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
-        "types": "ts-node src/common/graphql/generator/type.generator.ts"
+        "types": "ts-node src/common/graphql/generator/type.generator.ts",
+        "release": "standard-version",
+        "release:major": "standard-version -- --release-as major",
+        "release:minor": "standard-version -- --release-as minor",
+        "release:patch": "standard-version -- --release-as patch",
+        "release:version": "standard-version -- --release-as"
     },
     "dependencies": {
         "@babel/core": "^7.14.3",
