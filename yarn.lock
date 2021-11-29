@@ -1642,7 +1642,7 @@ ansi-escapes@^4.2.1, ansi-escapes@^4.3.0:
   dependencies:
     type-fest "^0.21.3"
 
-ansi-regex@^2.0.0, ansi-regex@^2.1.1:
+ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
   integrity sha1-w7M6te42DYbg5ijwRorn7yfWVN8=
@@ -2258,16 +2258,15 @@ clean-stack@^2.0.0:
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
   integrity sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==
 
-cli-color@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/cli-color/-/cli-color-2.0.0.tgz#11ecfb58a79278cf6035a60c54e338f9d837897c"
-  integrity sha512-a0VZ8LeraW0jTuCkuAGMNufareGHhyZU9z8OGsW0gXd1hZGi1SRuNRXdbGkraBBKnhyUhyebFWnRbp+dIn0f0A==
+cli-color@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/cli-color/-/cli-color-2.0.1.tgz#93e3491308691f1e46beb78b63d0fb2585e42ba6"
+  integrity sha512-eBbxZF6fqPUNnf7CLAFOersUnyYzv83tHFLSlts+OAHsNendaqv2tHCq+/MO+b3Y+9JeoUlIvobyxG/Z8GNeOg==
   dependencies:
-    ansi-regex "^2.1.1"
     d "^1.0.1"
-    es5-ext "^0.10.51"
+    es5-ext "^0.10.53"
     es6-iterator "^2.0.3"
-    memoizee "^0.4.14"
+    memoizee "^0.4.15"
     timers-ext "^0.1.7"
 
 cli-cursor@^3.1.0:
@@ -3282,7 +3281,7 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-es5-ext@^0.10.35, es5-ext@^0.10.46, es5-ext@^0.10.50, es5-ext@^0.10.51, es5-ext@^0.10.53, es5-ext@~0.10.14, es5-ext@~0.10.2, es5-ext@~0.10.46:
+es5-ext@^0.10.35, es5-ext@^0.10.46, es5-ext@^0.10.50, es5-ext@^0.10.53, es5-ext@~0.10.14, es5-ext@~0.10.2, es5-ext@~0.10.46:
   version "0.10.53"
   resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.53.tgz#93c5a3acfdbef275220ad72644ad02ee18368de1"
   integrity sha512-Xs2Stw6NiNHWypzRTY1MtaG/uJlwCk8kH81920ma8mvN8Xq1gsfhZvpkImLQArw8AHnv8MT2I45J3c0R8slE+Q==
@@ -3689,10 +3688,15 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fast-safe-stringify@2.0.7, fast-safe-stringify@^2.0.4, fast-safe-stringify@^2.0.7:
+fast-safe-stringify@2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
   integrity sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
+
+fast-safe-stringify@^2.0.4, fast-safe-stringify@^2.0.7, fast-safe-stringify@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz#c406a83b6e70d9e35ce3b30a81141df30aeba884"
+  integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
 fastq@^1.6.0:
   version "1.11.0"
@@ -5645,7 +5649,7 @@ memfs@^3.1.2:
   dependencies:
     fs-monkey "1.0.3"
 
-memoizee@^0.4.14:
+memoizee@^0.4.15:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/memoizee/-/memoizee-0.4.15.tgz#e6f3d2da863f318d02225391829a6c5956555b72"
   integrity sha512-UBWmJpLZd5STPm7PMUlOw/TSy972M+z8gcyQ5veOnSDRREz/0bmpyTfKt3/51DhEBqCZQn1udM/5flcSPYhkdQ==
@@ -5922,13 +5926,13 @@ neo-async@^2.6.0, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nest-winston@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/nest-winston/-/nest-winston-1.5.0.tgz#2a1d8c5e7f7abc933f10cd80e05548d03b63684b"
-  integrity sha512-hjJOZrzLbHe5BsN00OIi9Y7lT3ZMT4HX/1SbA5oKS0SkbjvvwxavpUz3N9itL6Oznh0B7JVjUXZLLK8aGULL0w==
+nest-winston@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/nest-winston/-/nest-winston-1.6.2.tgz#e4f24096b7e5cd9c8649b3d15203e576114d07e0"
+  integrity sha512-pM3o4zttpkKdnpNXyvMKKBD2u7OWROmVglyWZpH7O7QOLAegbMPvyqWgPNfvw2kkla+T/H4HFgGqcZGqiTzI5Q==
   dependencies:
-    cli-color "^2.0.0"
-    fast-safe-stringify "^2.0.7"
+    cli-color "^2.0.1"
+    fast-safe-stringify "^2.1.1"
 
 next-tick@1, next-tick@^1.1.0:
   version "1.1.0"
