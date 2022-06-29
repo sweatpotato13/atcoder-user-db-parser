@@ -23,7 +23,7 @@ export class UserService implements IUserService {
             );
             runOnTransactionCommit(() => { });
             return ret;
-        } catch (error) {
+        } catch (error: any) {
             runOnTransactionRollback(() => { });
             throw error;
         } finally {

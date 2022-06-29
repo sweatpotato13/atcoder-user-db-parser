@@ -5,19 +5,19 @@ import { IUserRepository } from "../interfaces/repository/user-repository.interf
 @EntityRepository(User)
 export class UserRepository extends Repository<User> implements IUserRepository {
     async createUser(data: User): Promise<User> {
-        const hub = await this.save(
+        const user = await this.save(
             super.create({
                 ...data
             })
         );
-        return hub;
+        return user;
     }
 
     async removeUser(data: User): Promise<boolean> {
         try {
-            const hub = await super.remove(data);
+            const user = await super.remove(data);
             return true;
-        } catch (err) {
+        } catch (error: any) {
             return false;
         }
     }
