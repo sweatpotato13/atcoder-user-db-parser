@@ -55,7 +55,7 @@ export class ParseRankingHandler implements ICommandHandler<ParseRankingCommand>
             }
             this.loggerService.info(`Finish to parsing page`);
         } catch (error: any) {
-            this.loggerService.error(err.message);
+            this.loggerService.error(error.message);
         }
     }
 }
