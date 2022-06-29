@@ -70,7 +70,7 @@
         "typedi": "^0.10.0",
         "typeorm": "^0.2.36",
         "typeorm-transactional-cls-hooked": "^0.1.21",
-        "winston": "^3.3.3",
+        "winston": "^3.8.0",
         "winston-mongodb": "^5.0.7"
     },
     "devDependencies": {
