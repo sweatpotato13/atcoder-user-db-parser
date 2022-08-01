@@ -79,7 +79,7 @@
         "@nestjs/cli": "^9.0.0",
         "@nestjs/schematics": "^8.0.3",
         "@nestjs/testing": "^7.6.17",
-        "@types/cron": "^1.7.3",
+        "@types/cron": "^2.0.0",
         "@types/helmet": "^4.0.0",
         "@types/jest": "26.0.23",
         "@types/node": "^18.0.3",
